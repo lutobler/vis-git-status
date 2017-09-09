@@ -7,6 +7,7 @@ local arrow_down = '\xe2\x86\x93'
 -- script is somewhat expensive.
 local branch_info = {}
 vis.events.subscribe(vis.events.FILE_OPEN, function(file)
+    if not file.name then return end
     local fname = file.name
     local script = [[
         pushd . > /dev/null
