@@ -18,9 +18,7 @@ vis.events.subscribe(vis.events.FILE_OPEN, function(file)
         branch=$($git_eng symbolic-ref --short HEAD 2>/dev/null)
         mod=$($git_eng status --porcelain)
         modified=
-        if [[ -n "$mod" ]]; then
-            modified=" (+)"
-        fi
+        [[ -n "$mod" ]] && modified=" (+)"
         out="$branch$modified"
         stat="$($git_eng status --porcelain --branch | grep '^##' | grep -o '\[.\+\]$')"
         aheadN="$(echo $stat | grep -o 'ahead [[:digit:]]\+' | grep -o '[[:digit:]]\+')"
@@ -28,9 +26,7 @@ vis.events.subscribe(vis.events.FILE_OPEN, function(file)
         [[ -n "$behindN" ]] && out+=" $behindN$arrow_down"
         [[ -n "$aheadN" ]] && out+=" $aheadN$arrow_up"
         popd > /dev/null
-        if [[ -n "$branch" ]]; then
-            echo "__GIT_BRANCH $out"
-        fi
+        [[ -n "$branch" ]] && echo "__GIT_BRANCH $out"
     ]=]
 
     local p = io.popen(script)
