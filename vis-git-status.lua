@@ -6,7 +6,7 @@ local arrow_down = '\xe2\x86\x93'
 -- this needs to be done when opening a file (once), because the shell
 -- script is somewhat expensive.
 local branch_info = {}
-vis.events.subscribe(vis.events.FILE_OPEN, function(file)
+local function update_branch_info(file)
     if not file.name then return end
     local fname = file.name
     local script = [[
@@ -39,7 +39,10 @@ vis.events.subscribe(vis.events.FILE_OPEN, function(file)
     if r ~= "" then
         branch_info[fname] = r
     end
-end)
+end
+
+vis.events.subscribe(vis.events.FILE_OPEN, update_branch_info)
+vis.events.subscribe(vis.events.FILE_SAVE_POST, update_branch_info)
 
 -- mostly taken from vis-std.lua
 vis.events.subscribe(vis.events.WIN_STATUS, function(win)
