@@ -12,6 +12,7 @@ local function update_branch_info(file)
     local script = [[
         pushd . > /dev/null
         cd $(dirname "$PWD/]] .. fname .. [=[")
+        [[ -d ".git" ]] || exit 1
         git_eng="env LANG=C git"
         arrow_up='__ARROW_UP'
         arrow_down='__ARROW_DOWN'
