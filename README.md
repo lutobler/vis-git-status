@@ -7,3 +7,8 @@ Add the Lua file to you Vis path (`~/.config/vis`) and add this to your `visrc.l
 ```
 require("vis-git-status")
 ```
+Clone the repo to your vis plugins directory (`~/.config/vis/plugins`) and add
+this to your `visrc.lua`:
+```
+require("plugins/vis-git-status")
+```
