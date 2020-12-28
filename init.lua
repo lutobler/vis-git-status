@@ -1,6 +1,6 @@
-local git_branch = '\xee\x82\xa0'
-local arrow_up = '\xe2\x86\x91'
-local arrow_down = '\xe2\x86\x93'
+local git_branch = 'B'
+local arrow_up = '↑'
+local arrow_down = '↓'
 
 -- get the current git branch when opening a file
 -- this needs to be done when opening a file (once), because the shell
